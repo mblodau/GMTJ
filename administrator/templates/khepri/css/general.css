@@ -327,6 +327,7 @@ div.width-70 { width: 70%; }
 div.width-30 { width: 30%; }
 div.width-60 { width: 60%; }
 div.width-40 { width: 40%; }
+div.width-100{ width: 100%;}
 
 table.admintable td 					 { padding: 3px; }
 table.admintable td.key,

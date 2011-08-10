@@ -1,0 +1,115 @@
+/* GMTJ list view styling */
+
+.gmtj_list {
+	display:block;
+	overflow:hidden;
+}
+
+.gmtj_list .gmtj_list_item {
+	display: block;
+	overflow:hidden;
+	margin:0px 0px 20px 0px;
+}
+
+.gmtj_list_item .gmtj_item_date {
+	float:left;
+	display: block;
+	overflow: hidden;
+	width:50px;
+	margin:0px 10px 0px 0px;
+}
+
+.gmtj_item_date .gmtj_item_day {
+	display: block;
+	margin:0px 0px 5px 0px;
+}
+
+.gmtj_item_date .gmtj_item_time {
+	display: block;
+	margin:0;
+	color: #8B8B8B;
+}
+
+.gmtj_list_item .gmtj_item_image {
+	float:left;
+	width:150px;
+	height:auto;
+	margin:0px 10px 0px 0px;
+}
+
+.gmtj_list_item .gmtj_item_info {
+	float:left;
+	display: block;
+	overflow: hidden;
+	width:300px;
+	margin:0px;
+}
+
+.gmtj_item_info h1 {
+	display: block;
+	margin:0px 0px 10px 0px;
+}
+
+.gmtj_item_info p.gmtj_item_price {
+	display: block;
+}
+
+/* GMTJ detail view styling */
+
+.gmtj_item {
+	display: block;
+	overflow: hidden;
+	width:520px;
+}
+
+.gmtj_item h1 {
+	margin:0px 0px 10px 0px;
+}
+
+.gmtj_item .gmtj_header_info {
+	margin:0px 0px 10px 0px;
+}
+
+.gmtj_item .gmtj_item_media {
+	width:520px;
+	height:auto;
+	margin:0px 0px 10px 0px;
+}
+
+.gmtj_item .gmtj_item_params {
+	display: block;
+	overflow: hidden;
+	width: inherit;
+	margin:0px 0px 10px 0px;
+}
+
+.gmtj_item_params .gmtj_params_col {
+	display: block;
+	overflow: hidden;
+	float:left;
+	margin:0px;
+}
+
+.gmtj_item_params .col1 {
+	width:130px;
+}
+
+
+.gmtj_item_params .col2 {
+	width:130px;
+}
+
+
+.gmtj_item_params .col3 {
+	width:125px;
+}
+
+.gmtj_item_params .col4 {
+	width:135px;
+}
+
+.gmtj_item gmtj_item_description {
+	display: block;
+	overflow: hidden;
+	width: inherit;
+}

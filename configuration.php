@@ -1,7 +1,7 @@
 <?php
 class JConfig {
 	var $offline = '0';
-	var $editor = 'tinymce';
+	var $editor = 'jce';
 	var $list_limit = '20';
 	var $helpurl = 'http://help.joomla.org';
 	var $debug = '0';
@@ -19,7 +19,7 @@ class JConfig {
 	var $tmp_path = '/Users/martin/htdocs/GMTJ/tmp';
 	var $live_site = '';
 	var $force_ssl = '0';
-	var $offset = '0';
+	var $offset = '2';
 	var $caching = '0';
 	var $cachetime = '15';
 	var $cache_handler = 'file';

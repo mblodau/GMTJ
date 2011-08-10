@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 08, 2011 at 05:43 PM
+-- Generation Time: Aug 10, 2011 at 08:51 PM
 -- Server version: 5.5.9
 -- PHP Version: 5.2.17
 
@@ -157,7 +157,7 @@ CREATE TABLE `jos_components` (
   `enabled` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `parent_option` (`parent`,`option`(32))
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=34 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=40 ;
 
 --
 -- Dumping data for table `jos_components`
@@ -185,7 +185,7 @@ INSERT INTO `jos_components` VALUES(19, 'Media Manager', '', 0, 0, 'option=com_m
 INSERT INTO `jos_components` VALUES(20, 'Articles', 'option=com_content', 0, 0, '', '', 'com_content', 0, '', 1, 'show_noauth=0\nshow_title=1\nlink_titles=0\nshow_intro=1\nshow_section=0\nlink_section=0\nshow_category=0\nlink_category=0\nshow_author=1\nshow_create_date=1\nshow_modify_date=1\nshow_item_navigation=0\nshow_readmore=1\nshow_vote=0\nshow_icons=1\nshow_pdf_icon=1\nshow_print_icon=1\nshow_email_icon=1\nshow_hits=1\nfeed_summary=0\n\n', 1);
 INSERT INTO `jos_components` VALUES(21, 'Configuration Manager', '', 0, 0, '', 'Configuration', 'com_config', 0, '', 1, '', 1);
 INSERT INTO `jos_components` VALUES(22, 'Installation Manager', '', 0, 0, '', 'Installer', 'com_installer', 0, '', 1, '', 1);
-INSERT INTO `jos_components` VALUES(23, 'Language Manager', '', 0, 0, '', 'Languages', 'com_languages', 0, '', 1, 'administrator=en-GB\nsite=en-GB', 1);
+INSERT INTO `jos_components` VALUES(23, 'Language Manager', '', 0, 0, '', 'Languages', 'com_languages', 0, '', 1, 'administrator=sv-SE\nsite=sv-SE\n\n', 1);
 INSERT INTO `jos_components` VALUES(24, 'Mass mail', '', 0, 0, '', 'Mass Mail', 'com_massmail', 0, '', 1, 'mailSubjectPrefix=\nmailBodySuffix=\n\n', 1);
 INSERT INTO `jos_components` VALUES(25, 'Menu Editor', '', 0, 0, '', 'Menu Editor', 'com_menus', 0, '', 1, '', 1);
 INSERT INTO `jos_components` VALUES(27, 'Messaging', '', 0, 0, '', 'Messages', 'com_messages', 0, '', 1, '', 1);
@@ -195,6 +195,12 @@ INSERT INTO `jos_components` VALUES(30, 'Template Manager', '', 0, 0, '', 'Templ
 INSERT INTO `jos_components` VALUES(31, 'User Manager', '', 0, 0, '', 'Users', 'com_users', 0, '', 1, 'allowUserRegistration=1\nnew_usertype=Registered\nuseractivation=1\nfrontend_userparams=1\n\n', 1);
 INSERT INTO `jos_components` VALUES(32, 'Cache Manager', '', 0, 0, '', 'Cache', 'com_cache', 0, '', 1, '', 1);
 INSERT INTO `jos_components` VALUES(33, 'Control Panel', '', 0, 0, '', 'Control Panel', 'com_cpanel', 0, '', 1, '', 1);
+INSERT INTO `jos_components` VALUES(34, 'GMTJ', 'option=com_gmtj', 0, 0, 'option=com_gmtj', 'Give me the job!', 'com_gmtj', 0, 'js/ThemeOffice/default.png', 0, '', 1);
+INSERT INTO `jos_components` VALUES(35, 'JCE', 'option=com_jce', 0, 0, 'option=com_jce', 'JCE', 'com_jce', 0, 'components/com_jce/media/img/menu/logo.png', 0, '', 1);
+INSERT INTO `jos_components` VALUES(36, 'WF_MENU_CPANEL', '', 0, 35, 'option=com_jce', 'WF_MENU_CPANEL', 'com_jce', 0, 'components/com_jce/media/img/menu/jce-cpanel.png', 0, '', 1);
+INSERT INTO `jos_components` VALUES(37, 'WF_MENU_CONFIG', '', 0, 35, 'option=com_jce&view=config', 'WF_MENU_CONFIG', 'com_jce', 1, 'components/com_jce/media/img/menu/jce-config.png', 0, '', 1);
+INSERT INTO `jos_components` VALUES(38, 'WF_MENU_PROFILES', '', 0, 35, 'option=com_jce&view=profiles', 'WF_MENU_PROFILES', 'com_jce', 2, 'components/com_jce/media/img/menu/jce-profiles.png', 0, '', 1);
+INSERT INTO `jos_components` VALUES(39, 'WF_MENU_INSTALL', '', 0, 35, 'option=com_jce&view=installer', 'WF_MENU_INSTALL', 'com_jce', 3, 'components/com_jce/media/img/menu/jce-install.png', 0, '', 1);
 
 -- --------------------------------------------------------
 
@@ -480,6 +486,35 @@ CREATE TABLE `jos_core_log_searches` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `jos_gmtj_ads`
+--
+
+CREATE TABLE `jos_gmtj_ads` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(250) NOT NULL,
+  `description` text NOT NULL,
+  `price` int(10) unsigned NOT NULL,
+  `model_year` int(4) unsigned NOT NULL,
+  `mileage` int(6) unsigned NOT NULL,
+  `fuel` enum('gas','diesel','eco') NOT NULL,
+  `created` datetime NOT NULL,
+  `created_by` int(10) NOT NULL,
+  `published` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `jos_gmtj_ads`
+--
+
+INSERT INTO `jos_gmtj_ads` VALUES(1, 'VW Golf 22', '<p>Lorem ipsum 123</p>', 30000, 1977, 5200, 'gas', '2011-08-10 21:10:52', 62, 1);
+INSERT INTO `jos_gmtj_ads` VALUES(2, 'BMW Z3', '<p>Lorem ipsum en gång till.</p>', 0, 0, 0, 'gas', '2011-08-09 21:10:58', 62, 1);
+INSERT INTO `jos_gmtj_ads` VALUES(4, 'Ferrari', '<p>Jjojojo</p>', 2000000, 2005, 500, 'eco', '2011-08-08 19:04:24', 62, 1);
+INSERT INTO `jos_gmtj_ads` VALUES(5, 'Buggy', '<p>sdfölksdf</p>', 500, 1905, 90001, 'diesel', '2011-08-07 21:17:09', 62, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `jos_groups`
 --
 
@@ -534,7 +569,7 @@ CREATE TABLE `jos_menu` (
 -- Dumping data for table `jos_menu`
 --
 
-INSERT INTO `jos_menu` VALUES(1, 'mainmenu', 'Home', 'home', 'index.php?option=com_content&view=frontpage', 'component', 1, 0, 20, 0, 1, 0, '0000-00-00 00:00:00', 0, 0, 0, 3, 'num_leading_articles=1\nnum_intro_articles=4\nnum_columns=2\nnum_links=4\norderby_pri=\norderby_sec=front\nshow_pagination=2\nshow_pagination_results=1\nshow_feed_link=1\nshow_noauth=\nshow_title=\nlink_titles=\nshow_intro=\nshow_section=\nlink_section=\nshow_category=\nlink_category=\nshow_author=\nshow_create_date=\nshow_modify_date=\nshow_item_navigation=\nshow_readmore=\nshow_vote=\nshow_icons=\nshow_pdf_icon=\nshow_print_icon=\nshow_email_icon=\nshow_hits=\nfeed_summary=\npage_title=\nshow_page_title=1\npageclass_sfx=\nmenu_image=-1\nsecure=0\n\n', 0, 0, 1);
+INSERT INTO `jos_menu` VALUES(1, 'mainmenu', 'Home', 'home', 'index.php?option=com_gmtj&view=ads', 'component', 1, 0, 34, 0, 1, 0, '0000-00-00 00:00:00', 0, 0, 0, 3, 'page_title=\nshow_page_title=1\npageclass_sfx=\nmenu_image=-1\nsecure=0\n\n', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -737,7 +772,7 @@ CREATE TABLE `jos_plugins` (
   `params` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_folder` (`published`,`client_id`,`access`,`folder`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
 
 --
 -- Dumping data for table `jos_plugins`
@@ -776,6 +811,7 @@ INSERT INTO `jos_plugins` VALUES(31, 'System - Log', 'log', 'system', 0, 5, 0, 1
 INSERT INTO `jos_plugins` VALUES(32, 'System - Remember Me', 'remember', 'system', 0, 6, 1, 1, 0, 0, '0000-00-00 00:00:00', '');
 INSERT INTO `jos_plugins` VALUES(33, 'System - Backlink', 'backlink', 'system', 0, 7, 0, 1, 0, 0, '0000-00-00 00:00:00', '');
 INSERT INTO `jos_plugins` VALUES(34, 'System - Mootools Upgrade', 'mtupgrade', 'system', 0, 8, 0, 1, 0, 0, '0000-00-00 00:00:00', '');
+INSERT INTO `jos_plugins` VALUES(35, 'Editor - JCE', 'jce', 'editors', 0, 0, 1, 0, 0, 0, '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -915,9 +951,9 @@ CREATE TABLE `jos_session` (
 -- Dumping data for table `jos_session`
 --
 
-INSERT INTO `jos_session` VALUES('', '1312817999', '1ecc237450d164ecc49935bc9c07eee9', 1, 0, '', 0, 0, '__default|a:7:{s:15:"session.counter";i:8;s:19:"session.timer.start";i:1312817780;s:18:"session.timer.last";i:1312817989;s:17:"session.timer.now";i:1312817999;s:22:"session.client.browser";s:83:"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:5.0.1) Gecko/20100101 Firefox/5.0.1";s:8:"registry";O:9:"JRegistry":3:{s:17:"_defaultNameSpace";s:7:"session";s:9:"_registry";a:1:{s:7:"session";a:1:{s:4:"data";O:8:"stdClass":0:{}}}s:7:"_errors";a:0:{}}s:4:"user";O:5:"JUser":19:{s:2:"id";i:0;s:4:"name";N;s:8:"username";N;s:5:"email";N;s:8:"password";N;s:14:"password_clear";s:0:"";s:8:"usertype";N;s:5:"block";N;s:9:"sendEmail";i:0;s:3:"gid";i:0;s:12:"registerDate";N;s:13:"lastvisitDate";N;s:10:"activation";N;s:6:"params";N;s:3:"aid";i:0;s:5:"guest";i:1;s:7:"_params";O:10:"JParameter":7:{s:4:"_raw";s:0:"";s:4:"_xml";N;s:9:"_elements";a:0:{}s:12:"_elementPath";a:1:{i:0;s:65:"/Users/martin/htdocs/GMTJ/libraries/joomla/html/parameter/element";}s:17:"_defaultNameSpace";s:8:"_default";s:9:"_registry";a:1:{s:8:"_default";a:1:{s:4:"data";O:8:"stdClass":0:{}}}s:7:"_errors";a:0:{}}s:9:"_errorMsg";N;s:7:"_errors";a:0:{}}}');
-INSERT INTO `jos_session` VALUES('', '1312817916', '2a50816f2111d36985a59b1e9b85c79b', 1, 0, '', 0, 1, '__default|a:8:{s:15:"session.counter";i:1;s:19:"session.timer.start";i:1312817912;s:18:"session.timer.last";i:1312817912;s:17:"session.timer.now";i:1312817912;s:22:"session.client.browser";s:83:"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:5.0.1) Gecko/20100101 Firefox/5.0.1";s:8:"registry";O:9:"JRegistry":3:{s:17:"_defaultNameSpace";s:7:"session";s:9:"_registry";a:1:{s:7:"session";a:1:{s:4:"data";O:8:"stdClass":0:{}}}s:7:"_errors";a:0:{}}s:4:"user";O:5:"JUser":19:{s:2:"id";i:0;s:4:"name";N;s:8:"username";N;s:5:"email";N;s:8:"password";N;s:14:"password_clear";s:0:"";s:8:"usertype";N;s:5:"block";N;s:9:"sendEmail";i:0;s:3:"gid";i:0;s:12:"registerDate";N;s:13:"lastvisitDate";N;s:10:"activation";N;s:6:"params";N;s:3:"aid";i:0;s:5:"guest";i:1;s:7:"_params";O:10:"JParameter":7:{s:4:"_raw";s:0:"";s:4:"_xml";N;s:9:"_elements";a:0:{}s:12:"_elementPath";a:1:{i:0;s:65:"/Users/martin/htdocs/GMTJ/libraries/joomla/html/parameter/element";}s:17:"_defaultNameSpace";s:8:"_default";s:9:"_registry";a:1:{s:8:"_default";a:1:{s:4:"data";O:8:"stdClass":0:{}}}s:7:"_errors";a:0:{}}s:9:"_errorMsg";N;s:7:"_errors";a:0:{}}s:13:"session.token";s:32:"979fc16e791bfc6597e077bb7c938b1e";}');
-INSERT INTO `jos_session` VALUES('admin', '1312818114', 'f1b82d04fa4b27d148d852ea71085cde', 0, 62, 'Super Administrator', 25, 1, '__default|a:8:{s:15:"session.counter";i:21;s:19:"session.timer.start";i:1312817912;s:18:"session.timer.last";i:1312818094;s:17:"session.timer.now";i:1312818114;s:22:"session.client.browser";s:83:"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:5.0.1) Gecko/20100101 Firefox/5.0.1";s:8:"registry";O:9:"JRegistry":3:{s:17:"_defaultNameSpace";s:7:"session";s:9:"_registry";a:3:{s:7:"session";a:1:{s:4:"data";O:8:"stdClass":0:{}}s:11:"application";a:1:{s:4:"data";O:8:"stdClass":1:{s:4:"lang";s:0:"";}}s:10:"com_cpanel";a:1:{s:4:"data";O:8:"stdClass":1:{s:9:"mtupgrade";O:8:"stdClass":1:{s:7:"checked";b:1;}}}}s:7:"_errors";a:0:{}}s:4:"user";O:5:"JUser":19:{s:2:"id";s:2:"62";s:4:"name";s:13:"Administrator";s:8:"username";s:5:"admin";s:5:"email";s:20:"info@inrestillhet.nu";s:8:"password";s:65:"25beeb95e5a1fb13e123419bbfb1196f:b4BT222BxVTKF8sOA8dTJONPnhRwAWoo";s:14:"password_clear";s:0:"";s:8:"usertype";s:19:"Super Administrator";s:5:"block";s:1:"0";s:9:"sendEmail";s:1:"1";s:3:"gid";s:2:"25";s:12:"registerDate";s:19:"2011-08-08 17:36:02";s:13:"lastvisitDate";s:19:"0000-00-00 00:00:00";s:10:"activation";s:0:"";s:6:"params";s:0:"";s:3:"aid";i:2;s:5:"guest";i:0;s:7:"_params";O:10:"JParameter":7:{s:4:"_raw";s:0:"";s:4:"_xml";N;s:9:"_elements";a:0:{}s:12:"_elementPath";a:1:{i:0;s:65:"/Users/martin/htdocs/GMTJ/libraries/joomla/html/parameter/element";}s:17:"_defaultNameSpace";s:8:"_default";s:9:"_registry";a:1:{s:8:"_default";a:1:{s:4:"data";O:8:"stdClass":0:{}}}s:7:"_errors";a:0:{}}s:9:"_errorMsg";N;s:7:"_errors";a:0:{}}s:13:"session.token";s:32:"979fc16e791bfc6597e077bb7c938b1e";}');
+INSERT INTO `jos_session` VALUES('', '1313002175', '8ecd17e878d4fde4c4e192d06377f647', 1, 0, '', 0, 0, '__default|a:7:{s:22:"session.client.browser";s:83:"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:5.0.1) Gecko/20100101 Firefox/5.0.1";s:15:"session.counter";i:30;s:8:"registry";O:9:"JRegistry":3:{s:17:"_defaultNameSpace";s:7:"session";s:9:"_registry";a:1:{s:7:"session";a:1:{s:4:"data";O:8:"stdClass":0:{}}}s:7:"_errors";a:0:{}}s:4:"user";O:5:"JUser":19:{s:2:"id";i:0;s:4:"name";N;s:8:"username";N;s:5:"email";N;s:8:"password";N;s:14:"password_clear";s:0:"";s:8:"usertype";N;s:5:"block";N;s:9:"sendEmail";i:0;s:3:"gid";i:0;s:12:"registerDate";N;s:13:"lastvisitDate";N;s:10:"activation";N;s:6:"params";N;s:3:"aid";i:0;s:5:"guest";i:1;s:7:"_params";O:10:"JParameter":7:{s:4:"_raw";s:0:"";s:4:"_xml";N;s:9:"_elements";a:0:{}s:12:"_elementPath";a:1:{i:0;s:65:"/Users/martin/htdocs/GMTJ/libraries/joomla/html/parameter/element";}s:17:"_defaultNameSpace";s:8:"_default";s:9:"_registry";a:1:{s:8:"_default";a:1:{s:4:"data";O:8:"stdClass":0:{}}}s:7:"_errors";a:0:{}}s:9:"_errorMsg";N;s:7:"_errors";a:0:{}}s:19:"session.timer.start";i:1312999454;s:18:"session.timer.last";i:1313002132;s:17:"session.timer.now";i:1313002175;}');
+INSERT INTO `jos_session` VALUES('', '1313002154', 'd066d0c7fddb76df35baee43c22b7c6c', 1, 0, '', 0, 1, '__default|a:8:{s:15:"session.counter";i:1;s:19:"session.timer.start";i:1313002150;s:18:"session.timer.last";i:1313002150;s:17:"session.timer.now";i:1313002150;s:22:"session.client.browser";s:83:"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:5.0.1) Gecko/20100101 Firefox/5.0.1";s:8:"registry";O:9:"JRegistry":3:{s:17:"_defaultNameSpace";s:7:"session";s:9:"_registry";a:1:{s:7:"session";a:1:{s:4:"data";O:8:"stdClass":0:{}}}s:7:"_errors";a:0:{}}s:4:"user";O:5:"JUser":19:{s:2:"id";i:0;s:4:"name";N;s:8:"username";N;s:5:"email";N;s:8:"password";N;s:14:"password_clear";s:0:"";s:8:"usertype";N;s:5:"block";N;s:9:"sendEmail";i:0;s:3:"gid";i:0;s:12:"registerDate";N;s:13:"lastvisitDate";N;s:10:"activation";N;s:6:"params";N;s:3:"aid";i:0;s:5:"guest";i:1;s:7:"_params";O:10:"JParameter":7:{s:4:"_raw";s:0:"";s:4:"_xml";N;s:9:"_elements";a:0:{}s:12:"_elementPath";a:1:{i:0;s:65:"/Users/martin/htdocs/GMTJ/libraries/joomla/html/parameter/element";}s:17:"_defaultNameSpace";s:8:"_default";s:9:"_registry";a:1:{s:8:"_default";a:1:{s:4:"data";O:8:"stdClass":0:{}}}s:7:"_errors";a:0:{}}s:9:"_errorMsg";N;s:7:"_errors";a:0:{}}s:13:"session.token";s:32:"cf173776dcfbd51576312352f10ead51";}');
+INSERT INTO `jos_session` VALUES('admin', '1313002172', 'd3d72f50b04642f47856952934bffe82', 0, 62, 'Super Administrator', 25, 1, '__default|a:8:{s:15:"session.counter";i:10;s:19:"session.timer.start";i:1313002150;s:18:"session.timer.last";i:1313002172;s:17:"session.timer.now";i:1313002172;s:22:"session.client.browser";s:83:"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:5.0.1) Gecko/20100101 Firefox/5.0.1";s:8:"registry";O:9:"JRegistry":3:{s:17:"_defaultNameSpace";s:7:"session";s:9:"_registry";a:4:{s:7:"session";a:1:{s:4:"data";O:8:"stdClass":0:{}}s:11:"application";a:1:{s:4:"data";O:8:"stdClass":1:{s:4:"lang";s:0:"";}}s:10:"com_cpanel";a:1:{s:4:"data";O:8:"stdClass":1:{s:9:"mtupgrade";O:8:"stdClass":1:{s:7:"checked";b:1;}}}s:9:"com_menus";a:1:{s:4:"data";O:8:"stdClass":1:{s:8:"menutype";s:8:"mainmenu";}}}s:7:"_errors";a:0:{}}s:4:"user";O:5:"JUser":19:{s:2:"id";s:2:"62";s:4:"name";s:13:"Administrator";s:8:"username";s:5:"admin";s:5:"email";s:20:"info@inrestillhet.nu";s:8:"password";s:65:"25beeb95e5a1fb13e123419bbfb1196f:b4BT222BxVTKF8sOA8dTJONPnhRwAWoo";s:14:"password_clear";s:0:"";s:8:"usertype";s:19:"Super Administrator";s:5:"block";s:1:"0";s:9:"sendEmail";s:1:"1";s:3:"gid";s:2:"25";s:12:"registerDate";s:19:"2011-08-08 17:36:02";s:13:"lastvisitDate";s:19:"2011-08-10 14:01:19";s:10:"activation";s:0:"";s:6:"params";s:0:"";s:3:"aid";i:2;s:5:"guest";i:0;s:7:"_params";O:10:"JParameter":7:{s:4:"_raw";s:0:"";s:4:"_xml";N;s:9:"_elements";a:0:{}s:12:"_elementPath";a:1:{i:0;s:65:"/Users/martin/htdocs/GMTJ/libraries/joomla/html/parameter/element";}s:17:"_defaultNameSpace";s:8:"_default";s:9:"_registry";a:1:{s:8:"_default";a:1:{s:4:"data";O:8:"stdClass":0:{}}}s:7:"_errors";a:0:{}}s:9:"_errorMsg";N;s:7:"_errors";a:0:{}}s:13:"session.token";s:32:"cf173776dcfbd51576312352f10ead51";}');
 
 -- --------------------------------------------------------
 
@@ -988,7 +1024,7 @@ CREATE TABLE `jos_users` (
 -- Dumping data for table `jos_users`
 --
 
-INSERT INTO `jos_users` VALUES(62, 'Administrator', 'admin', 'info@inrestillhet.nu', '25beeb95e5a1fb13e123419bbfb1196f:b4BT222BxVTKF8sOA8dTJONPnhRwAWoo', 'Super Administrator', 0, 1, 25, '2011-08-08 17:36:02', '2011-08-08 15:38:36', '', '');
+INSERT INTO `jos_users` VALUES(62, 'Administrator', 'admin', 'info@inrestillhet.nu', '25beeb95e5a1fb13e123419bbfb1196f:b4BT222BxVTKF8sOA8dTJONPnhRwAWoo', 'Super Administrator', 0, 1, 25, '2011-08-08 17:36:02', '2011-08-10 18:49:15', '', '');
 
 -- --------------------------------------------------------
 
@@ -1021,3 +1057,34 @@ CREATE TABLE `jos_weblinks` (
 -- Dumping data for table `jos_weblinks`
 --
 
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jos_wf_profiles`
+--
+
+CREATE TABLE `jos_wf_profiles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `users` text NOT NULL,
+  `types` varchar(255) NOT NULL,
+  `components` text NOT NULL,
+  `area` tinyint(3) NOT NULL,
+  `rows` text NOT NULL,
+  `plugins` text NOT NULL,
+  `published` tinyint(3) NOT NULL,
+  `ordering` int(11) NOT NULL,
+  `checked_out` tinyint(3) NOT NULL,
+  `checked_out_time` datetime NOT NULL,
+  `params` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `jos_wf_profiles`
+--
+
+INSERT INTO `jos_wf_profiles` VALUES(1, 'Default', 'Default Profile for all users', '', '19,20,21,23,24,25', '', 0, 'help,newdocument,undo,redo,spacer,bold,italic,underline,strikethrough,justifyfull,justifycenter,justifyleft,justifyright,spacer,blockquote,formatselect,styleselect,removeformat,cleanup;fontselect,fontsizeselect,forecolor,backcolor,spacer,paste,indent,outdent,numlist,bullist,sub,sup,textcase,charmap,hr;directionality,fullscreen,preview,source,print,searchreplace,spacer,table;visualaid,visualchars,nonbreaking,style,xhtmlxtras,anchor,unlink,link,imgmanager,spellchecker,article', 'contextmenu,browser,inlinepopups,media,help,paste,searchreplace,directionality,fullscreen,preview,source,table,textcase,print,style,nonbreaking,visualchars,xhtmlxtras,imgmanager,link,spellchecker,article', 1, 1, 0, '0000-00-00 00:00:00', '');
+INSERT INTO `jos_wf_profiles` VALUES(2, 'Front End', 'Sample Front-end Profile', '', '19,20,21', '', 1, 'help,newdocument,undo,redo,spacer,bold,italic,underline,strikethrough,justifyfull,justifycenter,justifyleft,justifyright,spacer,formatselect,styleselect;paste,searchreplace,indent,outdent,numlist,bullist,cleanup,charmap,removeformat,hr,sub,sup,textcase,nonbreaking,visualchars;fullscreen,preview,print,visualaid,style,xhtmlxtras,anchor,unlink,link,imgmanager,spellchecker,article', 'contextmenu,inlinepopups,help,paste,searchreplace,fullscreen,preview,print,style,textcase,nonbreaking,visualchars,xhtmlxtras,imgmanager,link,spellchecker,article', 0, 2, 0, '0000-00-00 00:00:00', '');
