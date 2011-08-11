@@ -9,7 +9,28 @@ echo ("</pre>");
 */
 
 ?>
-<div class="gmtj_list">
+<div id="gmtj_search">
+	<form id="searchForm" action="<?php echo JRoute::_( 'index.php?option=com_gmtj' );?>" method="post" name="searchForm">
+		
+		<div class="gmtj_search_field">
+			<input type="text" name="search[string]" id="gmtj_searchword" size="30" maxlength="20" value="<?php echo $this->search['string']; ?>" class="inputbox" />
+		</div>
+		
+		<div class="gmtj_search_button">
+			<button name="Search" onclick="this.form.submit();" class="button"><?php echo JText::_( 'Sök' );?></button>
+		</div>
+		
+		<div class="gmtj_search_button">
+			<button onclick="document.getElementById('gmtj_searchword').value='';this.form.submit();" class="button"><?php echo JTExt::_( 'Återställ' );?></button>
+		</div>
+	
+		<input type="hidden" name="option" value="com_gmtj" />
+		<input type="hidden" name="task" value="search" />
+		<input type="hidden" name="controller" value="ads" />
+	</form>
+</div>
+
+<div id="gmtj_list">
 
 	<?php foreach($this->ads AS $ad) { 
 	
@@ -20,7 +41,6 @@ echo ("</pre>");
 		$price = GMTJHelperHelper::getPrice($ad->price);
 		
 		?>
-	
 		
 		<div class="gmtj_list_item">
 			

@@ -20,11 +20,25 @@ class GMTJViewAds extends JView
 		
 		$model =& $this->getModel('ads');
 
-		// Get the ads
-		$ads = $model->getAds();
+		$post  = JRequest::get('post');
+				
+		// Check if we have some search values
+		$checkSearch = $model->checkSearch($post['search']);
+
+		// If we have some search values then run the search and return the ads that fit. Otherwise fetch the standard list of ads.						
+		if ($checkSearch) {
+		
+			$ads = $model->search($post['search']);
+			
+		} else {
+		
+			$ads = $model->getAds();
+			
+		}
 		
 		$this->assignRef( "ads", $ads );
-
+		$this->assignRef( "search", $post['search']);
+	
 		parent::display( $tpl );
 	}
 }

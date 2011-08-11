@@ -14,7 +14,7 @@ class GMTJControllerAd extends JController
 		parent::__construct( $config );
 		JRequest::setVar('view', 'ad');
 		
-		// -- Explicitly state the tasks we are going to implement
+		// Explicitly state the tasks we are going to implement
 		$this->registerTask('save', 'save');
 		$this->registerTask('apply', 'save');
 		$this->registerTask('cancel', 'cancel');
@@ -23,14 +23,19 @@ class GMTJControllerAd extends JController
 	
 	function save() 
 	{
+		// Get the model for the ad detail view
 		$model = $this->getModel( 'ad' );
+		
+		// Fetch the fields of the form in the ad detail view
 		$data = JRequest::get( 'post', JREQUEST_ALLOWRAW );
 		
+		// Try to save the ad with the models store function
 		if(!$model->store($data)) 
 			$msg = JText::_( 'Kunde inte spara annonsen' ); 
 		else
 			$msg = JText::_( 'Annonsen sparad' );
-				
+		
+		// "Apply" and "Save" both try to store the record but "Apply" reloads the detail view afterwards while "Save" closes the detail window and redirects back to the list view.
 		switch ($this->_task) 
 		{
 			case 'apply':			
@@ -46,25 +51,13 @@ class GMTJControllerAd extends JController
 	
 	function cancel($msg)
 	{
+		// Just go back to the list view
 		$link='index.php?option=com_gmtj';
 		$this->setRedirect($link, $msg);
 	}
 
     function display() 
     {
-		$link='index.php?option=com_gmtj&controller=ads';
-		
-		switch($this->_task) 
-		{
-			case 'edit':
-				break;
-			case 'add':
-				break;
-			default:
-				$this->setRedirect($link,$msg);
-				break;
-		}
-		
 		parent::display();
     }
  

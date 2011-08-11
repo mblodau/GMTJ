@@ -1,4 +1,6 @@
 <?php
+// Note: Nothing special in here. It's standard code for fetching the records of a table and add the sorting functions of the Joomla framework. (Try clicking on a column name in the admin list view for the ads)
+// I haven't used any creativity here. ;-)
 
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die();

@@ -1,4 +1,6 @@
 <?php
+// Note: The whole structure in this file is standard code for displaying a list view in order to get all the help and extra stuff from the Joomla framework
+
 // No direct access
 defined('_JEXEC') or die();
 ?>

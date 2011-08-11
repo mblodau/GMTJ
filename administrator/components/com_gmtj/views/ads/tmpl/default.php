@@ -1,4 +1,6 @@
 <?php
+// Note: The whole structure in this file is standard code for displaying a list view in order to get all the help and extra stuff from the Joomla framework
+
 // No direct access
 defined('_JEXEC') or die();
 ?>
@@ -53,7 +55,7 @@ defined('_JEXEC') or die();
 		// Get the user object of the ad owner
 		if (!empty($row->created_by)) {
 			
-			// We already have an owner and fetch his user name
+			// It's nicer to show the name of the ad owner and not just a number
 			$user = JFactory::getUser($row->created_by)->name;
 			
 		} else {
@@ -82,6 +84,7 @@ defined('_JEXEC') or die();
 				<a href="<?php echo $link; ?>"><?php echo $row->mileage; ?></a>
 			</td>
 			<td>
+				<!-- A little trick to display the different options of the enum field for the fuel types in a nicer way. There is a swedish word for each enum parameter in the swedish language file for com_gmtj -->
 				<a href="<?php echo $link; ?>"><?php echo JText::_($row->fuel); ?></a>
 			</td>
 			<td>

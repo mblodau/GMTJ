@@ -3,6 +3,12 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die();
 
+// Note: Table classes in Joomla are good for saving, loading or deleting single records that are not connected to other tables.
+// They are normally used instead of pure SQL queries for these simple actions because it is faster, results in cleaner code and validations 
+// plus typecasting can be put into the check() function.
+// 
+// As soon as there is relationships involved (1:n, n:n) it is better to use SQL queries. Examples for that can be found in the search function of the frontend part of com_gmt. File: components/com_gmtj/models/ads.php
+
 class TableAd extends JTable 
 {	
 	var $id = null;
@@ -18,19 +24,9 @@ class TableAd extends JTable
 	
 	function check()
 	{
-		// Validation
-		if( intval( $this->facs_id ) == 0 )
-			return false;
-		if( intval( $this->ammount ) == 0 )
-			return false;
-		return true;
+	
 	}
-	
-	/*
-	$createdate =& JFactory::getDate();
-	$row->created = $createdate->toUnix();
-	*/
-	
+		
 	function __construct( &$db ) 
 	{
 		parent::__construct( '#__gmtj_ads', 'id', $db );

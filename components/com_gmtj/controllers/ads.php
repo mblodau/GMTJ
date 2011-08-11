@@ -6,11 +6,18 @@ jimport('joomla.application.component.controller');
 
 class GMTJControllerAds extends JController
 {
-	function display()
-	{
+	function display() {
 		JRequest::setVar( 'view' , 'ads');
 
 		parent::display();
+	}
+	
+	function search() {
+	
+		JRequest::setVar( 'view' , 'ads');
+		
+		parent::display();
+		
 	}
 
 }

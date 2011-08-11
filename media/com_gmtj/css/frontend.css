@@ -1,11 +1,37 @@
+/* GMTJ search function styling */
+#gmtj_search {
+	display: block;
+	overflow: hidden;
+	margin:0px 0px 20px 0px;
+}
+
+#gmtj_search .gmtj_search_field {
+	display: block;
+	overflow: hidden;
+	margin:0px 0px 10px 0px;
+	float:left;
+}
+
+#gmtj_search .gmtj_search_button {
+	display: block;
+	overflow: hidden;
+	margin:0px 0px 0px 10px;
+	float:left;
+}
+
+.gmtj_search_button button {
+	margin:2px 0px 0px 0px;
+}
+
+
 /* GMTJ list view styling */
 
-.gmtj_list {
+#gmtj_list {
 	display:block;
 	overflow:hidden;
 }
 
-.gmtj_list .gmtj_list_item {
+#gmtj_list .gmtj_list_item {
 	display: block;
 	overflow:hidden;
 	margin:0px 0px 20px 0px;

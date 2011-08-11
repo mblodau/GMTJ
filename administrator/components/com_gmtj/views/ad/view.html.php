@@ -17,6 +17,7 @@ class GMTJViewAd extends JView
 		$cid = JRequest::getVar( 'cid',  0, '', 'array' );
 		$id = $cid[0];
 		
+		// Grab the ad
 		$ad = $model->getData( $id );
 		
 		// Create the toolbar		
@@ -28,7 +29,7 @@ class GMTJViewAd extends JView
 		// Get the user object of the ad owner
 		if (!empty($ad->created_by)) {
 			
-			// We already have an owner and fetch his user details
+			// Display the ad owners name and not just a number
 			$user = JFactory::getUser($ad->created_by);
 			
 		} else {
@@ -37,16 +38,16 @@ class GMTJViewAd extends JView
 			$user = JFactory::getUser();
 		}
 		
-		// Create the different kinds of lists for the view
+		// Create the different kinds of listboxes for the view template
 		
 		// Create select box for fuel type
 		$tmp = array();
+		// A little trick to display the different options of the enum field for the fuel types in a nicer way. There is a swedish word for each enum parameter in the swedish language file for com_gmtj
 		$tmp[] = JHTML::_( 'select.option', 'gas', JText::_('gas'), 'id', 'name' );
 		$tmp[] = JHTML::_( 'select.option', 'diesel', JText::_('diesel'), 'id', 'name' );
 		$tmp[] = JHTML::_( 'select.option', 'eco', JText::_('eco'), 'id', 'name' );
 
 		$lists['fuel'] = JHTML::_('select.genericlist', $tmp, 'fuel', 'class="inputbox" size="1"', 'id', 'name', $ad->fuel);
-		
 		
 		// Create radio box for published/unpublished
 		if (JRequest::getVar( 'task', '' ) == 'add') {
