@@ -5,8 +5,8 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
   
 // Require specific controller if requested
-if( $controller = JRequest::getWord( 'controller', 'ads' ) ) 
-{	
+if( $controller = JRequest::getWord( 'controller', 'ads' ) ) {
+
 	$path = JPATH_COMPONENT.DS.'controllers'.DS.$controller.'.php';
 
 	if( file_exists( $path ) ) 
@@ -16,8 +16,8 @@ if( $controller = JRequest::getWord( 'controller', 'ads' ) )
 }
 
 // Build a menu for list views
-if( $controller == 'ads' ) 
-{
+if( $controller == 'ads' ) {
+
 	// Note: JText is for adding multi language functionality. Joomla will look in the corresponding language file for a translation. 
 	// If we for example add "Annonser=Advertisements" to the english language for com_gmtj Joomla will display the english string instead of the swedish one if the english language is activated in the system.
 	JSubMenuHelper::addEntry(JText::_('Annonser'), 'index.php?option=com_gmtj&controller=ads', ($controller == 'ads' ? true : false));

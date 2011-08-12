@@ -4,16 +4,16 @@ defined('_JEXEC') or die( 'Restricted access' );
 
 jimport('joomla.application.component.controller');
 
-class GMTJController extends JController
-{
-	function __construct()
-	{
+class GMTJController extends JController {
+
+	function __construct() {
+	
 		parent::__construct();
 	}
 
 
-	function display()
-	{
+	function display() {
+	
 		parent::display();
 	}
 }

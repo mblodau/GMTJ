@@ -45,8 +45,8 @@ defined('_JEXEC') or die();
 	</thead>
 <tbody>
 <?php
-	for( $i=0, $n=count( $this->ads ); $i < $n; $i++ )
-	{
+	for( $i=0, $n=count( $this->ads ); $i < $n; $i++ ) {
+	
 		$row		=& $this->ads[$i];
 
 		$checked	= JHTML::_('grid.id', $i, $row->id);

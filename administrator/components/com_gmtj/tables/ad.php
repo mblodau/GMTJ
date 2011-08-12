@@ -9,8 +9,8 @@ defined('_JEXEC') or die();
 // 
 // As soon as there is relationships involved (1:n, n:n) it is better to use SQL queries. Examples for that can be found in the search function of the frontend part of com_gmt. File: components/com_gmtj/models/ads.php
 
-class TableAd extends JTable 
-{	
+class TableAd extends JTable {	
+
 	var $id = null;
 	var $title = null;
 	var $description = null;
@@ -22,13 +22,12 @@ class TableAd extends JTable
 	var $created_by = null;
 	var $published = 1;
 	
-	function check()
-	{
-	
+	function check() {
+		// Nothing in here. But would be used for validating the values before certain fields and returning a "false" incase they don't fit.
 	}
 		
-	function __construct( &$db ) 
-	{
+	function __construct( &$db ) {
+	
 		parent::__construct( '#__gmtj_ads', 'id', $db );
 	}	
 }

@@ -4,49 +4,40 @@ defined('_JEXEC') or die();
 
 jimport( 'joomla.application.component.model' );
 
-class GMTJModelAds extends JModel
-{
-	var $filter_order = 'id';
- 	var $filter_order_dir = 'asc';
- 	var $limitstart = 0;
- 	var $limit = 0;
+class GMTJModelAds extends JModel {
+
+	function getAds() {
 	
-	function getAds() 
-	{
 		global $mainframe, $option;
 		
-		$db = $this->_db;
-		
-		$order = ' ORDER BY ads.'.$db->getEscaped( $this->filter_order ).' '.$db->getEscaped( $this->filter_order_dir );
-						
-		if( empty( $this->_data ) ) 
-		{
-            $query = 'SELECT ads.* from `#__gmtj_ads` as ads';
-			
-			$query .= $order;
-						
-			$this->_count = $this->_getListCount( $query );
-			$this->_data = $this->_getList( $query, $this->limitstart, $this->limit );
-			
-			if(mysql_error()) 
-			{
-				JError::raiseWarning(mysql_errno(), mysql_error());
-			}
-		}
+		$db =& $this->_db;
 
-        if( !$this->_data ) 
-	        $this->_data = array();
+		// Note: The #_ part of the table name gets replaced by the table prefix which is defined in the global configuration of Joomla. (Default is the table prefix "jos")
+		// This makes it possible to have the tables for several Joomla sites in the same database.
+		$query =	'SELECT ads.* FROM #__gmtj_ads as ads '.
+					'ORDER BY ads.created DESC';
+	
+		$db->setQuery($query);
 		
-	    return $this->_data;
+		$result = $db->loadObjectList();
+		
+		if(mysql_error()) {
+		
+			JError::raiseWarning(mysql_errno(), mysql_error());
+		}
+        
+	    return $result;
     }
     
     function checkSearch($search) {
     
-    	// Note: In this stage the following code is too complex because right now there is only the search string. 
+    	// Note: In this stage the following code is basically too complex because right now there is only the search string. 
     	// It is a preparation for adding more search parameters like "mileage from", "mileage to", "price from", "price to" and so on.
     	
     	if (!empty($search)) {
     	
+    		// Loop trough the array that contains possible search parameters and see if any of them have some content.
+    		// If no search has been initiated then just use the getAds() function instead of the search() function for fetching the ads. Makes the site faster.
 	    	foreach ($search AS $value) {
 	    	
 	    		if (!empty($value)) {
@@ -78,44 +69,45 @@ class GMTJModelAds extends JModel
 		}	
 
 		// Get rid of special characters
-		$special_chars = array('/','\\','\'','"',',','.','<','>','?',';',':','[',']','{','}','|','=','+','-','_',')','(','*','&','^','%','$','#','@','!','~','`');
+		$special_chars = array('"','<','>','?',';','[',']','{','}','|','=','+','-','_',')','(','*','&','^','%','$','#','@','!','~','`');
 		
 		foreach ($special_chars AS $char) {
 		
+			// Replace all special chars with a space sign. The space sign has the positive benefit of creating more search words in certain search strings. Like this: "Volkswagen+Passat" becomes "volkswagen passat"
 			$search_string = str_replace($char, ' ', $search_string);
 			
 		}
 		
-		// Need to get rid of unnecessary spaces
+		// Need to get rid of as many unnecessary space signs as possible to make the loop in the splitSearchString() function work a bit less
     	return trim($search_string);
     }
     
     function splitSearchString($search_string) {
 
-		// Split the search string into words
+		// Split the search string into separate words
 		$search_string = explode(' ', $search_string);
 		
-		// Only allow words that are at least 2 characters long
-		$cleaned_string = array();
+		// Only allow words that are at least 2 characters long. Would prefer three characters but there could be a lot of searches for cars with just two chars. Like this: "VW Passat"
+		$split_string = array();
 		
 		foreach ($search_string AS $value) {
 		
 			if (strlen($value)>=2) {
 			
-				$cleaned_string[] = $value;
+				$split_string[] = $value;
 				
 			}	
 		}
 				   
-    	return $cleaned_string;
+    	return $split_string;
     }
     
     function search($search) {
     	
-    	// General part of the search query
-		$db =& $this->_db;
+    	$db =& $this->_db;
 
-    	$query =	'SELECT ads.* FROM #__gmtj_ads AS ads ';
+		// General part of the search query
+		$query =	'SELECT ads.* FROM #__gmtj_ads AS ads ';
     	
     	// Clean the search string from special characters and common words
 		$search_string = $this->cleanSearchString($search['string']);
@@ -138,9 +130,11 @@ class GMTJModelAds extends JModel
     		
     		}
 
+			// Note: The getEscaped() function does nearly the same as the quote() function from before. 
+			// It also cleans the string from all dangerous chars. Only difference is that getEscaped doesnt put single quotes around the string. 
+			// In this case the quote() function would create syntax errors in the query since we need to have % signs around the strings.
     		$where .=	' ( ads.title LIKE "%'.$db->getEscaped($value).'%" OR ads.description LIKE "%'.$db->getEscaped($value).'%" ) ';
-    		
-    		    		
+    			    		
     		++$i;
     		
     	}
@@ -150,22 +144,19 @@ class GMTJModelAds extends JModel
   		
   		// Add the WHERE part to the rest of the query
   		$query .= $where;
+  		
+  		// Add the ORDER part to the query;
+  		$query .= ' ORDER BY ads.created DESC ';
   			  	
     	$db->setQuery($query);
     	
     	$result = $db->loadObjectList();
     	
-    	if(mysql_error()) 
-		{
+    	if(mysql_error()) {
+    	
 			JError::raiseWarning(mysql_errno(), mysql_error());
 		}	
    
-  		if( !$result ) {
-  		
-	        $result = array();
-	        
-	    }
-
     	return $result;
     }
 

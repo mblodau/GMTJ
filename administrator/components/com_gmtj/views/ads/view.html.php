@@ -6,10 +6,10 @@ defined('_JEXEC') or die();
 jimport('joomla.application.component.view');
 jimport('joomla.html.pagination');
 
-class GMTJViewAds extends JView 
-{
-	function display( $tpl = null ) 
-	{
+class GMTJViewAds extends JView {
+
+	function display( $tpl = null ) {
+	
 		global $option, $mainframe;
 		
 		$model = $this->getModel();

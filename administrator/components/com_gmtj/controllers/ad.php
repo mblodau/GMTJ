@@ -5,10 +5,10 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
  
 jimport('joomla.application.component.controller');
  
-class GMTJControllerAd extends JController 
-{	
-	function __construct($config = null) 
-	{
+class GMTJControllerAd extends JController {
+	
+	function __construct($config = null) {
+	
 		if( $config == null ) 
 			$config = array();
 		parent::__construct( $config );
@@ -21,8 +21,8 @@ class GMTJControllerAd extends JController
 	}
 
 	
-	function save() 
-	{
+	function save() {
+	
 		// Get the model for the ad detail view
 		$model = $this->getModel( 'ad' );
 		
@@ -36,8 +36,8 @@ class GMTJControllerAd extends JController
 			$msg = JText::_( 'Annonsen sparad' );
 		
 		// "Apply" and "Save" both try to store the record but "Apply" reloads the detail view afterwards while "Save" closes the detail window and redirects back to the list view.
-		switch ($this->_task) 
-		{
+		switch ($this->_task) {
+		
 			case 'apply':			
 				$link = 'index.php?option=com_gmtj&controller=ad&task=edit&cid[]='.$model->_id;
 				break;
@@ -46,18 +46,19 @@ class GMTJControllerAd extends JController
 				$link='index.php?option=com_gmtj&controller=ads';
 				break;
 		}
+		
 		$this->setRedirect($link,$msg);
 	}
 	
-	function cancel($msg)
-	{
+	function cancel($msg) {
+	
 		// Just go back to the list view
 		$link='index.php?option=com_gmtj';
 		$this->setRedirect($link, $msg);
 	}
 
-    function display() 
-    {
+    function display() {
+    
 		parent::display();
     }
  

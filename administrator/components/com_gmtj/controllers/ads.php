@@ -6,14 +6,15 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.controller');
  
 // Controller for the ads list view
-class GMTJControllerAds extends JController 
-{
+class GMTJControllerAds extends JController {
 	
-	function __construct($config = null) 
-	{
+	function __construct($config = null) {
+	
 		if( $config == null ) 
 			$config = array();
+	
 		parent::__construct( $config );
+	
 		JRequest::setVar('view', 'ads');
 		
 		// Explicitly state the tasks we are going to implement
@@ -25,21 +26,21 @@ class GMTJControllerAds extends JController
 	}
 
 	
-	function add() 
-	{
+	function add() {
+	
 		// Redirect to the controller for the ad detail view (controllers/ad.php) and pass on the task "add"
 		$this->setRedirect('index.php?option=com_gmtj&controller=ad&task=add');
 	}
 	
-	function edit() 
-	{
+	function edit() {
+	
 		// Redirect to the controller for the ad detail view (controllers/ad.php) and pass on the id of the selected record.
 		$cid = JRequest::getVar('cid', array(),'','array');
 		$this->setRedirect('index.php?option=com_gmtj&controller=ad&task=edit&cid[]='.$cid[0]);
 	}
 	
-	function remove() 
-	{
+	function remove() {
+	
 		// Grab the model for the single ad. (models/ad.php)
 		$model = $this->getModel('ad');
 		
@@ -65,8 +66,8 @@ class GMTJControllerAds extends JController
 
 	}
 	
-	function publish() 
-	{
+	function publish() {
+
 		// Function for the publish/unpublish icon all the way to the right in the ads list view
 		$link = 'index.php?option=com_gmtj';
 		$text = '';
@@ -76,26 +77,26 @@ class GMTJControllerAds extends JController
 		$row 	= $model->getTable();
 		
 		// Use the same function for publishing or unpublishing.
-		if($this->_task == 'publish') 
-		{
+		if($this->_task == 'publish') {
+		
 			$publish = 1;
 			$msg = JText::_('Annons publicerad');
-		} 
-		else 
-		{
+			
+		} else {
+		
 			$publish = 0;
 			$msg = JText::_('Annons avpublicerad');
 		}
 		
 		// Use tables publish function and throw a status message in case something goes wrong
-		if (!$row->publish($cid, $publish, $user->id)) 
-		{
+		if (!$row->publish($cid, $publish, $user->id)) {
+		
 			$msg = JText::_("Kunde inte publicera/avpublicera annonsen");
 		}
 		
 		// Throw eventual SQL syntax error
-		if(mysql_error()) 
-		{
+		if(mysql_error()) {
+		
 			JError::raiseWarning(mysql_errno(), mysql_error());
 		}
 		
@@ -103,8 +104,7 @@ class GMTJControllerAds extends JController
 		$this->setRedirect( $link, $msg );
 	}
 
-    function display() 
-    {
+    function display() {
 
 		parent::display();	
 	}

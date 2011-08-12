@@ -4,15 +4,14 @@ defined('_JEXEC') or die();
 
 jimport( 'joomla.application.component.model' );
 
-class GMTJModelAd extends JModel
-{
+class GMTJModelAd extends JModel {
 
-	function getAd($id) 
-	{
+	// Function for fetching a single ad by its ID. 
+	function getAd($id)	{
+	
 		$db =& $this->_db;
 
-		$today = date( 'Y-m-d H:i:s', time() );
-		
+		// Note: the quote function from the database object is there for prevention of SQL injection. It removes characters that are necessary for a SQL query and also puts some quotes around the string. 		
 		$query =	'SELECT ad.* FROM #__gmtj_ads AS ad '.
 					'WHERE ad.id = '.$db->quote($id);
 		
@@ -20,8 +19,8 @@ class GMTJModelAd extends JModel
 
 		$result = $db->loadObject();
 		
-		if(mysql_error()) 
-		{
+		if(mysql_error()) {
+		
 			JError::raiseWarning(mysql_errno(), mysql_error());
 		}
 		

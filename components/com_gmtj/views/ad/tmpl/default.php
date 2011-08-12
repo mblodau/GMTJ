@@ -2,10 +2,21 @@
 // no direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
+// Prepare some values 
+
+// Get the ad owners name
 $user = JFactory::getUser($this->ad->created_by)->name;
+
+// Get a nicer version of the date (for example: 19 Jun)
 $date = GMTJHelperHelper::getDateRaw($this->ad->created);
+
+// Get the time
 $time = GMTJHelperHelper::getTime($this->ad->created);
+
+// Get a nice looking price
 $price = GMTJHelperHelper::getPrice($this->ad->price);
+
+// Get a nice looking mileage value
 $mileage = GMTJHelperHelper::getMileage($this->ad->mileage);
 ?>
 
@@ -19,6 +30,7 @@ $mileage = GMTJHelperHelper::getMileage($this->ad->mileage);
 		
 		<?php echo (JText::_('Säljes av'));?>
 		
+		<!-- Just put a demo link around the user to display that this could be expanded by calling the search function and returning all ads from the ad owner -->
 		<a href="#">
 			<?php echo $user; ?>
 		</a>
@@ -29,6 +41,7 @@ $mileage = GMTJHelperHelper::getMileage($this->ad->mileage);
 	
 	<div class="gmtj_item_media">
 	
+		<!-- Just some placeholder image. No time for adding proper logic that would enable image upload, automatic resizing, storing the image on the server and so on -->
 		<img src="images/stories/ads/placeholder.jpg" />
 		
 	</div>

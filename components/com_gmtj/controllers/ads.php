@@ -4,9 +4,10 @@ defined('_JEXEC') or die( 'Restricted access' );
 
 jimport('joomla.application.component.controller');
 
-class GMTJControllerAds extends JController
-{
+class GMTJControllerAds extends JController {
+
 	function display() {
+	
 		JRequest::setVar( 'view' , 'ads');
 
 		parent::display();
